@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project_PRN.Controllers
 {
-    public class HomeController : Microsoft.AspNetCore.Mvc.Controller
+    public class HomeController : Controller
     {
         public IActionResult Home()
         {
