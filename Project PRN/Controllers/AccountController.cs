@@ -31,7 +31,6 @@ namespace Project_PRN.Controllers
             if (test != null)
             {
                 HttpContext.Session.SetObjectAsJson("account", test);
-                //TempData["account"] = model; //Pass model data to home controller action index.
                 return RedirectToAction("Index", "Home");
             }
             //Don't have data in DB, then keep state.
@@ -39,6 +38,7 @@ namespace Project_PRN.Controllers
             {
                 return View(model);
             }
+
         }
 
         public IActionResult SignUp()
