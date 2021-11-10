@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Account;
+
+@{
     ViewData["Title"] = "SignIn";
     Layout = "~/Views/Shared/_SignIn.cshtml";
 }
@@ -11,13 +13,21 @@
                 <img src="~/sign/images/img-01.png" alt="IMG">
             </div>
 
-            <form class="login100-form validate-form">
+            <form class="login100-form validate-form" method="post">
                 <span class="login100-form-title">
                     Member Login
                 </span>
 
-                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="email" placeholder="Email">
+
+                <div class="wrap-input100 validate-input" data-validate="Username is required">
+                    @Html.TextBoxFor(
+                        m => m.Username,
+                        new
+                        {
+                            @class = "input100",
+                            placeholder = "Username"
+                        }
+                    )
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -25,7 +35,14 @@
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Password is required">
-                    <input class="input100" type="password" name="pass" placeholder="Password">
+                    @Html.PasswordFor(
+                        m => m.Password,
+                        new
+                        {
+                            @class = "input100",
+                            placeholder = "Password"
+                        }
+                    )
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-lock" aria-hidden="true"></i>
@@ -33,14 +50,16 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        <a href="/Home/Index">Home</a>
-                    </button>
+                    <a asp-controller="Home" asp-action="Index">
+                        <button class="login100-form-btn" type="button">
+                            Home
+                        </button>
+                    </a>
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        <a href="#">Login</a>
+                    <button class="login100-form-btn" type="submit">
+                        Login
                     </button>
                 </div>
 

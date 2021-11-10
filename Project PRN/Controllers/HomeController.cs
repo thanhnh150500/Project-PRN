@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace Project_PRN.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Home()
+        public IActionResult Index()
         {
             return View();
         }

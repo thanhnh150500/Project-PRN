@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Project_PRN.Session;
+@model Account;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Basic -->
@@ -75,6 +78,7 @@
                                 <a class="nav-link" href="/Review/Review">Đánh giá mới</a>
                             </li>
 
+
                             <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
                                 <a class="nav-link" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CMS Admin</a>
                                 <ul class="dropdown-menu megamenu" aria-labelledby="dropdown01">
@@ -92,7 +96,32 @@
                             </li>
                             <!--End News-->
                             <li class="nav-item">
-                                <a class="nav-login" href="/Account/SignIn">Login</a>
+                                @{
+                                    //@using Project_PRN.Session;
+                                    var account = Context.Session.GetObjectFromJson<Account>("account");
+                                    //Don't session.
+                                    if (account == null)
+                                    {
+                                        @Html.ActionLink(
+                                            "Login",
+                                            "SignIn",
+                                            "Account",
+                                            new
+                                            {
+                                                id = 1
+                                            },
+                                            new
+                                            {
+                                                @class = "nav-login"
+                                            }
+                                        )
+                                    }
+                                    else
+                                    {
+                                        <p class="nav-login">Hello @account.Fullname</p>
+                                    }
+                                }
+
                             </li>
                         </ul>
                     </div>
