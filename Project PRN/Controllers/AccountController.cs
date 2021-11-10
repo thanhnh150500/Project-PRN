@@ -38,7 +38,6 @@ namespace Project_PRN.Controllers
             {
                 return View(model);
             }
-
         }
 
         public IActionResult SignUp()
