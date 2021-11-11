@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,9 +14,8 @@ namespace Project_PRN.Models
             Comments = new HashSet<Comment>();
         }
 
-        [Required]
         public string Username { get; set; }
-        [Required]
+       public string Username { get; set; }
         public string Password { get; set; }
         public string Fullname { get; set; }
         public string Avatar { get; set; }

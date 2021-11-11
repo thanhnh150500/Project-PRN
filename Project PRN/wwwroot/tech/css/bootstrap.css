@@ -327,6 +327,10 @@ html {
           box-sizing: inherit;
 }
 
+li.search-container {
+    padding-left: 6rem;
+}
+
 @-ms-viewport {
   width: device-width;
 }
