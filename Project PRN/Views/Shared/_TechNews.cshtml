@@ -106,10 +106,7 @@
                                             "Login",
                                             "SignIn",
                                             "Account",
-                                            new
-                                            {
-                                                id = 1
-                                            },
+                                            null,
                                             new
                                             {
                                                 @class = "nav-login"
@@ -118,10 +115,21 @@
                                     }
                                     else
                                     {
-                                        <p class="nav-login">Hello @account.Fullname</p>
+                                        <p class="nav-login">
+                                            Hello @account.Fullname
+                                            @Html.ActionLink(
+                                                "Logout",
+                                                "SignOut",
+                                                "Account",
+                                                null,
+                                                new
+                                                {
+                                                    @class = ""
+                                                }
+                                            )
+                                        </p>
                                     }
                                 }
-
                             </li>
                         </ul>
                     </div>

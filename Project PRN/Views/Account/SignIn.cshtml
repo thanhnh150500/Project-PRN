@@ -25,7 +25,8 @@
                         new
                         {
                             @class = "input100",
-                            placeholder = "Username"
+                            placeholder = "Username",
+                            value = "Username"
                         }
                     )
                     <span class="focus-input100"></span>
@@ -48,6 +49,15 @@
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
                 </div>
+
+                <div style="height: 60px; color: red; font-weight: bold; font-size:12px;">
+                    @ViewBag.Msg
+                    <br />
+                    <span asp-validation-for="Username"></span>
+                    <br />
+                    <span asp-validation-for="Password"></span>
+                </div>
+
 
                 <div class="container-login100-form-btn">
                     <a asp-controller="Home" asp-action="Index">

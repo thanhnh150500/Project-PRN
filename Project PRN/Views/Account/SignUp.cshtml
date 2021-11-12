@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Account
+@{
     ViewData["Title"] = "SignUp";
     Layout = "~/Views/Shared/_SignUp.cshtml";
 }
@@ -12,61 +13,112 @@
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
-                                <label class="label">first name</label>
-                                <input class="input--style-4" type="text" name="first_name">
+                                <label class="label">Username</label>
+                                @Html.TextBoxFor(
+                                    m => m.Username,
+                                    new
+                                    {
+                                        @class = "input--style-4",
+                                        value = "Username"
+                                    }
+                                )
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <label class="label">last name</label>
-                                <input class="input--style-4" type="text" name="last_name">
+                                <label class="label">Fullname</label>
+                                @Html.TextBoxFor(
+                                    m => m.Fullname,
+                                    new
+                                    {
+                                        @class = "input--style-4",
+                                        value = "Fullname"
+                                    }
+                                )
                             </div>
                         </div>
                     </div>
                     <div class="row row-space">
                         <div class="col-2">
                             <div class="input-group">
-                                <label class="label">Birthday</label>
-                                <div class="input-group-icon">
-                                    <input class="input--style-4 js-datepicker" type="text" name="birthday">
-                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                                </div>
+                                <label class="label">Password</label>
+                                @Html.PasswordFor(
+                                    m => m.Password,
+                                    new
+                                    {
+                                        @class = "input--style-4",
+                                    }
+                                )
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="input-group">
-                                <label class="label">Gender</label>
-                                <div class="p-t-10">
-                                    <label class="radio-container m-r-45">
-                                        Male
-                                        <input type="radio" checked="checked" name="gender">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="radio-container">
-                                        Female
-                                        <input type="radio" name="gender">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
+                                <label class="label">Avatar</label>
+                                <input type="file" id="myFile" name="filename" asp-for="Avatar">
                             </div>
                         </div>
                     </div>
                     <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Confirm Password</label>
+                                @Html.PasswordFor(
+                                    m => m.ConfirmPassword,
+                                    new
+                                    {
+                                        @class = "input--style-4",
+                                    }
+                                )
+                            </div>
+                        </div>
                         <div class="col-2">
                             <div class="input-group">
                                 <label class="label">Email</label>
-                                <input class="input--style-4" type="email" name="email">
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label class="label">Phone Number</label>
-                                <input class="input--style-4" type="text" name="phone">
+                                @Html.TextBoxFor(
+                                    m => m.Email,
+                                    new
+                                    {
+                                        @class = "input--style-4",
+                                        value = "Email"
+                                    }
+                                )
+
                             </div>
                         </div>
                     </div>
+
+                    <div style="height: 80px; color: red; font-weight: bold; font-size:12px;">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <span asp-validation-for="Username"></span>
+                            </div>
+                            <div class="col-2">
+                                <span asp-validation-for="Fullname"></span>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <span asp-validation-for="Password"></span>
+                            </div>
+                            <div class="col-2">
+                                <span asp-validation-for="Avatar"></span>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <span asp-validation-for="ConfirmPassword"></span>
+                            </div>
+                            <div class="col-2">
+                                <span asp-validation-for="Email"></span>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-4"> @ViewBag.Msg</div>
+                        </div>
+                    </div>
+
                     <div class="p-t-15">
-                        <a class="btn btn--radius-2 btn--blue" type="submit" href="/Account/SignIn"> Submit </a>
+                        <button class="btn btn--radius-2 btn--blue" type="submit"> Submit </button>
                     </div>
                 </form>
             </div>

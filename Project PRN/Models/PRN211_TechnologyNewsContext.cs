@@ -103,7 +103,6 @@ namespace Project_PRN.Models
                 entity.HasOne(d => d.Controller)
                     .WithMany(p => p.Actions)
                     .HasForeignKey(d => d.ControllerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Action_Controller");
             });
 
@@ -310,7 +309,6 @@ namespace Project_PRN.Models
                 entity.HasOne(d => d.Action)
                     .WithMany(p => p.RoleActions)
                     .HasForeignKey(d => d.ActionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Role_Action_Action");
 
                 entity.HasOne(d => d.Role)
