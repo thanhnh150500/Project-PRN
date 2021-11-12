@@ -63,16 +63,16 @@
                     </button>
                     <a class="navbar-brand" href="/Home/Index"><img src="~/tech/images/version/tech-logo.png" alt=""></a>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="navbar-nav mr-auto">
+                        <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" onclick="location.reload()" href="/Home/Index">Trang chủ</a>
                             </li>
                             <!--End Home-->
                             <li class="nav-item">
-                                <a class="nav-link" href="/NewsPC/PCnews">Công nghệ máy tính</a>
+                                <a class="nav-link" href="/NewsMobile/MobileNews">Công nghệ điện thoại</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/NewsMobile/MobileNews">Công nghệ điện thoại</a>
+                                <a class="nav-link" href="/NewsPC/PCnews">Công nghệ máy tính</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/Review/Review">Đánh giá mới</a>
@@ -94,16 +94,19 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            <li class="search-container">
-                                <form action="#">
-                                    <input type="text" placeholder="" name="search">
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </li>
                             <!--End News-->
-                        </ul>                        
-                        <ul class="navbar-nav mr-2">
+                        </ul>   
+                        <div>
+                            <ul class="search" style="padding-left: 10rem;">
+                                <li class="search-container" style="padding-left = 4px;">
+                                    <form action="#">
+                                        <input type="text" placeholder="" name="search">
+                                        <button type="submit">Submit</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="navbar-nav mr-2" style="padding-left:4rem;" style="margin-top: 0.2rem;">
                             <li class="nav-item">
                                 @{
                                     //@using Project_PRN.Session;

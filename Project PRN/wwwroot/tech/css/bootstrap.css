@@ -327,8 +327,8 @@ html {
           box-sizing: inherit;
 }
 
-li.search-container {
-    padding-left: 4rem;
+.search-container {
+    padding-left: 4rem !important;
 }
 
 @-ms-viewport {
