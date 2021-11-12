@@ -61,11 +61,11 @@
                 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     </button>
-                    <a class="navbar-brand" href="/Home/Home"><img src="~/tech/images/version/tech-logo.png" alt=""></a>
+                    <a class="navbar-brand" href="/Home/Index"><img src="~/tech/images/version/tech-logo.png" alt=""></a>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" onclick="location.reload()" href="/Home/Home">Trang chủ</a>
+                                <a class="nav-link" onclick="location.reload()" href="/Home/Index">Trang chủ</a>
                             </li>
                             <!--End Home-->
                             <li class="nav-item">
@@ -102,7 +102,7 @@
                                 </form>
                             </li>
                             <!--End News-->
-                        </ul>
+                        </ul>                        
                         <ul class="navbar-nav mr-2">
                             <li class="nav-item">
                                 @{
@@ -121,13 +121,13 @@
                                             },
                                             new
                                             {
-                                                @class = "nav-login"
+                                                @class = "nav-link"
                                             }
                                         )
                                     }
                                     else
                                     {
-                                        <p class="nav-login">Hello @account.Fullname</p>
+                                        <p class="nav-link">Hello @account.Fullname</p>
                                     }
                                 }
                             </li>

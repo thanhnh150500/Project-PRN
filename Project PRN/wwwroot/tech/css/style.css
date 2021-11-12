@@ -173,6 +173,10 @@ a {
     /*padding-right: 0.8rem;*/
 }
 
+.search-container {
+    padding-left: 20px;
+}
+
 .header-section {
     padding: 3rem 0 1.5rem;
     background-color: #ffffff;
