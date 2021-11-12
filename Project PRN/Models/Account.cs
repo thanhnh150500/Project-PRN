@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,12 +15,17 @@ namespace Project_PRN.Models
             Comments = new HashSet<Comment>();
         }
 
+<<<<<<< HEAD
         [Required(ErrorMessage = "Must input Username.")]
         [RegularExpression(@"^.{3,}$", ErrorMessage = "Minimum 3 characters required for Username.")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Must input Password.")]
         [RegularExpression(@"^.{3,}$", ErrorMessage = "Minimum 3 characters required for Password.")]
+=======
+        public string Username { get; set; }
+       public string Username { get; set; }
+>>>>>>> dea7f14e2a3dbe6aa7d4cf62e672f39d146e4612
         public string Password { get; set; }
 
         //ref: https://stackoverflow.com/questions/21746910/compare-password-and-confirm-password-in-asp-net-mvc

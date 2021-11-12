@@ -34,10 +34,10 @@ namespace Project_PRN.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new ConfigurationBuilder()
-                          .SetBasePath(Directory.GetCurrentDirectory())
-                          .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             IConfigurationRoot configuration = builder.Build();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DBBySnt"));
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("MyStoreDB"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
