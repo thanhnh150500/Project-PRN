@@ -14,7 +14,7 @@ namespace Project_PRN.Controllers
         {
             var articles = context.Articles.ToList();
             var query = (from items in articles
-                         where items.CategoryId == 1
+                         where items.CategoryId == 2
                          select items).ToList();
             ViewBag.Articles = query;
             return View();
