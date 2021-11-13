@@ -94,7 +94,15 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            <li class="search-container">
+                                <form action="#">
+                                    <input type="text" placeholder="" name="search">
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </li>
                             <!--End News-->
+
                         </ul>   
                         <div>
                             <ul class="search" style="padding-left: 10rem;">
@@ -118,10 +126,7 @@
                                             "Login",
                                             "SignIn",
                                             "Account",
-                                            new
-                                            {
-                                                id = 1
-                                            },
+                                            null,
                                             new
                                             {
                                                 @class = "nav-link"
@@ -130,7 +135,21 @@
                                     }
                                     else
                                     {
-                                        <p class="nav-link">Hello @account.Fullname</p>
+
+                                        <p class="nav-login">
+                                            Hello @account.Fullname
+                                            @Html.ActionLink(
+                                                "Logout",
+                                                "SignOut",
+                                                "Account",
+                                                null,
+                                                new
+                                                {
+                                                    @class = ""
+                                                }
+                                            )
+                                        </p>
+
                                     }
                                 }
                             </li>

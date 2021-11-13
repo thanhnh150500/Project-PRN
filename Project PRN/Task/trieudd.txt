@@ -1,0 +1,31 @@
+﻿//create database structure --> using EF create model for back-end + append some model view field
+
+//customize front-end(Html helper(DOM, attribute), keep state with model, ...)
+
+//session(encode, decode)
+
+//add extra helper, extension class for back-end
+
+//login(session, cookie, model validation, viewBag)
+
+//log-out(session)
+
+cms fix bug account ko load duoc combobox
+
+admin manage user, article
+
+register(model state is valid, model validation, viewBag)
+
+email khi dang ky tai khoan
+
+//authorization module
+
+
+thong ke
+
+user menu when login
+
+test flow, logic code, review, comment
+
+register (insert ảnh, hash salt password)
+https://jasonwatmore.com/post/2020/07/16/aspnet-core-3-hash-and-verify-passwords-with-bcrypt

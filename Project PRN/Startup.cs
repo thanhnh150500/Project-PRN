@@ -5,10 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using Project_PRN.Models;
 
 namespace Project_PRN
 {
@@ -33,9 +30,15 @@ namespace Project_PRN
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(15);
             });
+
+            services.AddScoped(typeof(PRN211_TechnologyNewsContext));
+            services.AddDbContext<PRN211_TechnologyNewsContext>(
+                options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DBBySnt")));
+
         }
 
-        
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -23,6 +23,7 @@ namespace Project_PRN.Controllers
         public ActionResult DetailNewsMoblie(int id)
         {
             var articles = context.Articles.ToList();
+
             var query = (from items in articles
                          where items.Id == id
                          select items).ToList();
