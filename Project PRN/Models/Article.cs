@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -23,6 +24,8 @@ namespace Project_PRN.Models
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        [Display(Name = "Username")]
         public virtual Account CreatedAccountUsernameNavigation { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }

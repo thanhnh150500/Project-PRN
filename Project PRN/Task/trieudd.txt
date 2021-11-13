@@ -10,25 +10,19 @@
 
 //log-out(session)
 
+//register(model state is valid, model validation, tempData and cookie can pass throuh different controler OR action, email notify)
+
+//admin thong ke - chuyen cho Thanh lam
+
+admin manage user, article(customer my col name by annotation, pagination)
+
+// authorization module 1 phan
+
 cms fix bug account ko load duoc combobox
 
-admin manage user, article
-
-register(model state is valid, model validation, viewBag)
-
-email khi dang ky tai khoan
-
-//authorization module
-
-
-thong ke
+test flow, logic code, review, tách hàm, tách hằng số, comment
 
 user menu when login
 
-test flow, logic code, review, comment
-
 register (insert ảnh, hash salt password)
 https://jasonwatmore.com/post/2020/07/16/aspnet-core-3-hash-and-verify-passwords-with-bcrypt
-
-
-123
