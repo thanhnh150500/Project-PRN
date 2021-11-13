@@ -32,7 +32,7 @@ namespace Project_PRN.Models
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Must input Fullname.")]
-        [RegularExpression(@"^\d+([A-Z][a-z]+\s{1})+$", ErrorMessage = "Wrong format value for Fullname.")]
+        [RegularExpression(@"^([A-Z][a-z]+\s{0,1})+$", ErrorMessage = "Wrong format value for Fullname.")]
         public string Fullname { get; set; }
 
         public string Avatar { get; set; }

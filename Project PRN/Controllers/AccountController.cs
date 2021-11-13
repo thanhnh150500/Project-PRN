@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 using Project_PRN.Authorization;
 using Project_PRN.ExceptionHandler;
 using Project_PRN.Models;
@@ -51,7 +53,7 @@ namespace Project_PRN.Controllers
             //Don't  have data in DB.
             if (account == null)
             {
-                ViewBag.NotFoundMsg = "Username or password wrong !!!";
+                TempData["Msg"] = "Username or password wrong !!!";
                 return View(model);
             }
             //Have data in DB.
@@ -109,13 +111,45 @@ namespace Project_PRN.Controllers
                     model.RoleId = 3;//3 is user, default is user
                     db.Accounts.Add(model);
                     db.SaveChanges();
-                    ViewBag.Msg = "Regist account successfully. Please enter password to continue !!!";
-                    return SignIn(model); //return view login with model registed.
+
+                    //pass msg through action.
+                    TempData["Msg"] = "Regist account successfully. Please enter password to continue !!!";
+
+                    //update Cookie for login to display username.
+                    //ref: https://www.youtube.com/watch?v=WCDBRL_l6mo
+                    string key = "MyCookie";
+                    string value = model.Username;
+                    CookieOptions cookieOptions = new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddDays(7)
+                    };
+                    Response.Cookies.Append(key, value, cookieOptions);
+
+                    //ref: https://www.youtube.com/watch?v=C4O8vqg295o
+                    var mailMsg = new MimeMessage();
+                    mailMsg.From.Add(new MailboxAddress("Tech-news Mail System", "trieuddhe130295@fpt.edu.vn"));
+                    mailMsg.To.Add(new MailboxAddress("New user", model.Email));
+                    mailMsg.Subject = "Welcome to our density !!!";
+                    mailMsg.Body = new TextPart("plain")
+                    {
+                        Text = "Hello world new username: " + model.Username
+                    };
+                    using (var client = new SmtpClient())
+                    {
+                        client.Connect("smtp.gmail.com", 587, false);
+                        client.Authenticate("trieuddhe130295@fpt.edu.vn", "Dutrieu230599@1");
+
+                        client.Send(mailMsg);
+
+                        client.Disconnect(true);
+                    }
+
+                    return RedirectToAction("SignIn");
                 }
                 //Have data in DB.
                 else
                 {
-                    ViewBag.DuplicateMsg = "This username has been already used. Please try another.";
+                    ViewBag.Msg = "This username has been already used. Please try another.";
                 }
             }
 

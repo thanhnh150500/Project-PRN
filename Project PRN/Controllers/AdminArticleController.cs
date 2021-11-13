@@ -1,61 +1,43 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Project_PRN.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Project_PRN.Models;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
-using Microsoft.EntityFrameworkCore;
-using Project_PRN.Session;
-using Project_PRN.Controllers;
-using Project_PRN.ExceptionHandler;
-using Project_PRN.Authorization;
 
-namespace Project_PRN.Controllers.Admin
+namespace Project_PRN.Controllers
 {
-    public class AdminAccountController : Controller
+    public class AdminArticleController : Controller
     {
-
         private readonly PRN211_TechnologyNewsContext db;
 
-        public AdminAccountController(PRN211_TechnologyNewsContext db) => this.db = db;
+        public AdminArticleController(PRN211_TechnologyNewsContext db) => this.db = db;
 
         // GET: AccountController
         public ActionResult Index()
         {
-            var account = HttpContext.Session.GetObjectFromJson<Account>("account");
+            var model =
+                db.Articles
+                .Include(obj => obj.Category)
+                .Include(obj => obj.CreatedAccountUsernameNavigation);
 
-            //Get current controller's name context.
-            //ref: https://stackoverflow.com/questions/18248547/get-controller-and-action-name-from-within-controller
-            var controllerName = ControllerContext.RouteData.Values["controller"].ToString();
-            //Get current action's name context.
-            var actionName = ControllerContext.RouteData.Values["action"].ToString();
-
-            //Can access server resource(controllerName, actionName) by account
-            if (account != null && AuthorizationHelper.IsValidAccess(account, controllerName, actionName))
-            {
-                var model = db.Accounts.Include(obj => obj.Role).ToList();
-                return View(model);
-            }
-            //Can't access server resource by account OR Don't login.
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return View(model.ToList());
         }
 
         // GET: AccountController/Details/5
-        public ActionResult Details(string username)
+        public ActionResult Details(int? id)
         {
             //invalid parameter
-            if (username == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             //don't exist any product has this id
-            var account = db.Accounts.FirstOrDefault(p => p.Username.Equals(username));
+            var account = db.Articles.FirstOrDefault(p => p.Id.Equals(id));
             if (account == null)
             {
                 return NotFound();
@@ -73,45 +55,45 @@ namespace Project_PRN.Controllers.Admin
         // POST: AccountController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Account account)
+        public ActionResult Create(Article article)
         {
             //valid data form
             if (ModelState.IsValid)
             {
-                db.Add(account);//add cache
+                db.Add(article);//add cache
                 db.SaveChanges();//add db
                 return RedirectToAction(nameof(Index));
             }
             //keep state.
-            return View(account);
+            return View(article);
         }
 
         // GET: AccountController/Edit/5
-        public ActionResult Edit(string username)
+        public ActionResult Edit(int? id)
         {
             //invalid parameter
-            if (username == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             //don't exist any product has this id
-            var account = db.Accounts.ToList().Find(obj => obj.Username.Equals(username));
-            if (account == null)
+            var article = db.Articles.ToList().Find(obj => obj.Id.Equals(id));
+            if (article == null)
             {
                 return NotFound();
             }
 
-            return View(account);
+            return View(article);
         }
 
         // POST: AccountController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int username, Account account)
+        public ActionResult Edit(int id, Article article)
         {
             //invalid parameter
-            if (!username.Equals(account.Username))
+            if (!id.Equals(article.Id))
             {
                 return NotFound();
             }
@@ -119,18 +101,18 @@ namespace Project_PRN.Controllers.Admin
             //valid data from client.
             if (ModelState.IsValid)
             {
-                db.Update(account);
+                db.Update(article);
                 db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(account);
+            return View(article);
         }
 
         // GET: AccountController/Delete/5
-        public ActionResult Delete(string username)
+        public ActionResult Delete(int? id)
         {
-            var account = db.Accounts.ToList().Find(obj => obj.Username.Equals(username));
-            db.Accounts.Remove(account);
+            var article = db.Articles.ToList().Find(obj => obj.Id.Equals(id));
+            db.Articles.Remove(article);
             db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
