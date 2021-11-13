@@ -29,3 +29,6 @@ test flow, logic code, review, comment
 
 register (insert ảnh, hash salt password)
 https://jasonwatmore.com/post/2020/07/16/aspnet-core-3-hash-and-verify-passwords-with-bcrypt
+
+
+123
