@@ -37,7 +37,7 @@ namespace Project_PRN.Models
                .SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             IConfigurationRoot configuration = builder.Build();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("MyStoreDB"));
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("TechNews"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

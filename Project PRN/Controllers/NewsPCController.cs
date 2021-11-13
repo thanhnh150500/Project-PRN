@@ -23,9 +23,12 @@ namespace Project_PRN.Controllers
         public ActionResult DetailNewPC(int id)
         {
             var articles = context.Articles.ToList();
-            var query = articles.Where(a => a.Id == id).ToList();
+
+            var query = (from items in articles
+                         where items.Id == id
+                         select items).ToList();
             ViewBag.Articles = query;
-            return View(query);
+            return View();
         }
     }
 }
